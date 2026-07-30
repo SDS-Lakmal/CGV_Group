@@ -32,7 +32,7 @@ def run_pipeline(image_path, xml_path):
     print("   NSBM Student Attendance Management System (SAMS)")
     print("=" * 60)
 
-    # 1. Load Student Records from XML
+    # 1. Load Student Records from XML.
     students = parse_student_info(xml_path)
     print(f"\n[INFO] Loaded {len(students)} student records from {xml_path}:")
     for s in students:
