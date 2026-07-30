@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nsbm>
+    <students>
+        <batches>
+            <batch id="15">
+                <student>
+                    <index>001</index>
+                    <name>John Snow</name>
+                </student>
+                <student>
+                    <index>007</index>
+                    <name>James Bond</name>
+                </student>
+                <student>
+                    <index>009</index>
+                    <name>Andre</name>
+                </student>
+            </batch>
+        </batches>
+    </students>
+</nsbm>
