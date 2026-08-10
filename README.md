@@ -1,4 +1,4 @@
-# CS402.3 SAMS Project - Group Member Task Guide 
+# Group Member Task Guide 
 
 > **⚠️ IMPORTANT NOTE FOR ALL MEMBERS:**
 > Please be careful when copying and pasting the Python code. Python is highly sensitive to spaces and indentation. Copy the code exactly as it appears in the code blocks below to avoid `IndentationError`s.
