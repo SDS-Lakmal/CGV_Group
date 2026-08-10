@@ -175,14 +175,15 @@ def plot_morphology(cleaned_img):
 To test your task, create a temporary file named `test_member_4.py` in the main folder and paste this code:
 ```python
 import cv2
-from src.processing.filtering import apply_noise_filtering
-from src.processing.threshold import apply_thresholding
 from src.processing.morphology import clean_noise
 from src.vis.morph_vis import plot_morphology
 
+# 1. Load Image and do basic preprocessing inline
 gray = cv2.imread('dataset/1.jpeg', cv2.IMREAD_GRAYSCALE)
-blurred, _ = apply_noise_filtering(gray)
-binary = apply_thresholding(blurred)
+blurred = cv2.GaussianBlur(gray, (5, 5), 0)
+binary = cv2.adaptiveThreshold(blurred, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV, 11, 2)
+
+# 2. Test Member 4's Actual Logic
 cleaned_img = clean_noise(binary)
 plot_morphology(cleaned_img)
 ```
@@ -307,23 +308,17 @@ def plot_cropped_signature(cropped_img):
 To test your task, create a temporary file named `test_member_6.py` in the main folder and paste this code:
 ```python
 import cv2
-from src.processing.filtering import apply_noise_filtering
-from src.processing.threshold import apply_thresholding
-from src.processing.grid_extraction import find_signature_boxes
 from src.processing.cropper import crop_signature
 from src.vis.crop_vis import plot_cropped_signature
 
+# 1. Load Real Image
 real_img = cv2.imread('dataset/1.jpeg')
-gray = cv2.cvtColor(real_img, cv2.COLOR_BGR2GRAY)
-blurred, _ = apply_noise_filtering(gray)
-binary = apply_thresholding(blurred)
-boxes = find_signature_boxes(binary)
 
-if boxes:
-    cropped = crop_signature(real_img, boxes[0])
-else:
-    cropped = real_img[100:300, 100:300]
+# 2. Use a hardcoded dummy box (x, y, w, h) to test cropping logic independently
+dummy_box = (150, 200, 100, 50) 
 
+# 3. Test Member 6's Actual Logic
+cropped = crop_signature(real_img, dummy_box)
 plot_cropped_signature(cropped)
 ```
 Run the script in your terminal: 
@@ -378,34 +373,24 @@ def plot_attendance_pie(present_count, absent_count):
 **Step 3: Test Your Code & Save Output (IMPORTANT)**
 To test your task, create a temporary file named `test_member_7.py` in the main folder and paste this code:
 ```python
-import cv2
-from src.processing.filtering import apply_noise_filtering
-from src.processing.threshold import apply_thresholding
-from src.processing.grid_extraction import find_signature_boxes
-from src.processing.cropper import crop_signature
+import numpy as np
 from src.processing.presence_analyzer import check_presence
 from src.vis.pie_chart_vis import plot_attendance_pie
 
-gray = cv2.imread('dataset/1.jpeg', cv2.IMREAD_GRAYSCALE)
-blurred, _ = apply_noise_filtering(gray)
-binary = apply_thresholding(blurred)
-boxes = find_signature_boxes(binary)
+# 1. Create dummy cropped binary signatures for testing
+signed_box = np.ones((50, 100), dtype=np.uint8) * 255 # White pixels (Signed)
+empty_box = np.zeros((50, 100), dtype=np.uint8)       # Black pixels (Absent)
 
-present_count = 0
-absent_count = 0
+# 2. Test Member 7's Actual Logic
+status1, _ = check_presence(signed_box)
+status2, _ = check_presence(empty_box)
 
-for box in boxes:
-    cropped_bin = crop_signature(binary, box)
-    status, _ = check_presence(cropped_bin)
-    if status == 'Present':
-        present_count += 1
-    else:
-        absent_count += 1
+present_count = 1 if status1 == 'Present' else 0
+present_count += 1 if status2 == 'Present' else 0
+absent_count = 2 - present_count
 
-if present_count + absent_count == 0:
-    present_count, absent_count = 5, 1
-
-plot_attendance_pie(present_count, absent_count)
+# 3. Add extra numbers just to make the pie chart look realistic
+plot_attendance_pie(present_count + 15, absent_count + 3)
 ```
 Run the script in your terminal: 
 ```bash
