@@ -1,0 +1,11 @@
+# Python cache files
+__pycache__/
+*.pyc
+
+# Environment files
+venv/
+.vscode/
+
+# Temporary test files & outputs
+output_member_*.png
+test_member_*.py
