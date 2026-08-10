@@ -241,15 +241,18 @@ def plot_bounding_boxes(original, boxes):
 To test your task, create a temporary file named `test_member_5.py` in the main folder and paste this code:
 ```python
 import cv2
-from src.processing.filtering import apply_noise_filtering
-from src.processing.threshold import apply_thresholding
 from src.processing.grid_extraction import find_signature_boxes
 from src.vis.grid_vis import plot_bounding_boxes
 
+# 1. Load Real Image
 real_img = cv2.imread('dataset/1.jpeg')
 gray = cv2.cvtColor(real_img, cv2.COLOR_BGR2GRAY)
-blurred, _ = apply_noise_filtering(gray)
-binary = apply_thresholding(blurred)
+
+# 2. Basic preprocessing (Simulating Member 2 & 3 internally for testing)
+blurred = cv2.GaussianBlur(gray, (5, 5), 0)
+binary = cv2.adaptiveThreshold(blurred, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV, 11, 2)
+
+# 3. Test Member 5's Actual Logic
 boxes = find_signature_boxes(binary)
 plot_bounding_boxes(real_img, boxes)
 ```
