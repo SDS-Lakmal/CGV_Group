@@ -255,6 +255,13 @@ binary = cv2.adaptiveThreshold(blurred, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2
 
 # 3. Test Member 5's Actual Logic
 boxes = find_signature_boxes(binary)
+# 3. Test Member 5's Actual Logic
+boxes = find_signature_boxes(binary)
+
+# for print
+print("Detected Boxes (x, y, w, h):", boxes) 
+
+plot_bounding_boxes(real_img, boxes)
 plot_bounding_boxes(real_img, boxes)
 ```
 Run the script in your terminal: 
@@ -314,8 +321,8 @@ from src.vis.crop_vis import plot_cropped_signature
 # 1. Load Real Image
 real_img = cv2.imread('dataset/1.jpeg')
 
-# 2. Use a hardcoded dummy box (x, y, w, h) to test cropping logic independently
-dummy_box = (150, 200, 100, 50) 
+# 2. Box Coordinate
+dummy_box = (955, 1129, 96, 48) 
 
 # 3. Test Member 6's Actual Logic
 cropped = crop_signature(real_img, dummy_box)
