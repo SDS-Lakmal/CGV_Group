@@ -7,4 +7,4 @@ def plot_morphology(cleaned_img):
     plt.axis('off')
     plt.savefig('output_member_4.png')
     print('Saved image as output_member_4.png')
-    plt.show()
+    # plt.show()

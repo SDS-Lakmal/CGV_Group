@@ -7,4 +7,4 @@ def plot_similarity_score(score):
     plt.title(f'Signature Match Score: {score:.2f}')
     plt.savefig('output_member_10.png')
     print('Saved image as output_member_10.png')
-    plt.show()
+    # plt.show()

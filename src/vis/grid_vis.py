@@ -10,4 +10,4 @@ def plot_bounding_boxes(original, boxes):
     plt.title("Detected Grid Cells")
     plt.savefig("output_member_5.png")
     print("Saved image as output_member_5.png")
-    plt.show()
+    # plt.show()

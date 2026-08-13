@@ -9,4 +9,4 @@ def plot_attendance_pie(present_count, absent_count):
     plt.title('Daily Attendance Summary')
     plt.savefig('output_member_7.png')
     print('Saved image as output_member_7.png')
-    plt.show()
+    # plt.show()
